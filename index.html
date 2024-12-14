@@ -6,7 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Noe ❤️<3</title>
     <style>
+      html {
+        height: 100%;
+        width: 100%;
+      }
       body {
+        height: 100%;
+        width: 100%;
         background-color: #000;
         margin: 0;
         overflow: hidden;
@@ -29,19 +35,54 @@
       }
 
       .text {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        color: white;
-        font-size: 18px;
-        font-family: Arial, sans-serif;
-        text-align: center;
+        /* Tamaño de fuente por defecto para pantallas grandes */
+      }
+
+      /* Estilos para pantallas más pequeñas (móviles) */
+      @media (max-width: 768px) {
+        .text {
+          position: absolute;
+          top: 200%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          color: white;
+          font-family: Arial, sans-serif;
+          text-align: center;
+          font-size: 12px;
+        }
+      }
+
+      /* Estilos para tabletas (pantallas medianas) */
+      @media (max-width: 1024px) {
+        .text {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          color: white;
+          font-family: Arial, sans-serif;
+          text-align: center;
+          font-size: 15px; /* Tamaño de fuente mediano para tabletas */
+        }
+      }
+
+      /* Estilos para pantallas grandes (PC de escritorio) */
+      @media (min-width: 1025px) {
+        .text {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          color: white;
+          font-family: Arial, sans-serif;
+          text-align: center;
+          font-size: 18px; /* Tamaño de fuente predeterminado para pantallas grandes */
+        }
       }
     </style>
   </head>
   <body>
-    <canvas id="canvas" width="1400" height="600"></canvas>
+    <canvas id="canvas"></canvas>
     <div class="text">
       <p>
         Te amo muchísimo mi vida. Sos lo más importante para mí y, mientras nos
@@ -68,6 +109,15 @@
       De Sebastian Sangermano para Noelia Herrera ❤️- <span id="fecha"></span>
     </footer>
     <script>
+      window.addEventListener("resize", resizeCanvas, false);
+
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        drawStuff();
+      }
+
       const fechaActual = new Date().toLocaleDateString("es-ES", {
         year: "numeric",
         month: "long",
